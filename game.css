@@ -1,0 +1,606 @@
+/* ----------------------------------------------------------------- Logo -- */
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    --ss-header-height: 10em;
+    --ss-footer-height: 4em;
+    --ss-main-width: 90em;
+    --ss-min-width: 68em;
+    --ss-space-xxl: 2.3em;
+    --ss-space-xl: 1.5em;
+    --ss-space-lg: 1em;
+    --ss-space-md: calc(var(--ss-space-lg)/2);
+    --ss-space-sm: calc(var(--ss-space-md)/1.5);
+    --ss-space-xs: calc(var(--ss-space-sm)/2);
+    --ss-space-micro: calc(var(--ss-space-xs)/2);
+    --ss-transparent: #00000000;
+    --ss-black: #000;
+    --ss-white: #FFFFFF;
+    --ss-offwhite: #FFF3E4;
+    --ss-yellow0: #F7FFC1;
+    --ss-yellow: #FAF179;
+    --ss-yolk0: #f1c59a;
+    --ss-yolk: #F79520;
+    --ss-yolk2: #d97611;
+    --ss-red0: #e29092;
+    --ss-red: #ff0002;
+    --ss-red2: #801919;
+    --ss-red-bright: #EF3C39;
+    --ss-pink: #EC008C;
+    --ss-pink1: #b9006e;
+    --ss-pink-light: #ff3aaf;
+    --ss-brown: #924e0c;
+    --ss-blue00: #abe3f6;
+    --ss-blue0: #c8edf8;
+    --ss-blue1: #95E2FE;
+    --ss-blue2: #5EBBD9;
+    --ss-blue3: #0B93BD;
+    --ss-blue4: #0E7697;
+    --ss-blue5: #0a5771;
+    --ss-green0: #87ddbb;
+    --ss-green1: #3ebe8d;
+    --ss-green2: #2a7256;
+    --ss-orange1: #F79520;
+    --ss-vip-gold: linear-gradient(to right, #D1A943, #CFCDAF, #CC8630, #D1AA44, #CC8630);
+    --ss-gold: #D1AA44;
+    --ss-clear: rgba(255, 255, 255, 0);
+    --ss-blue2clear: rgba(94, 186, 217, 0);
+    --ss-shadow: rgba(0,0,0,0.4);
+    --ss-blueshadow: #0a577187;
+    --ss-darkoverlay: rgba(0, 0, 0, 0.8);
+    --ss-darkoverlay2: rgba(0, 0, 0, 0.2);
+    --ss-lightoverlay: url('https://wallpapercave.com/wp/oju5y5S.jpg');
+
+}
+
+
+#logo {
+  background-image: url('https://cdn.discordapp.com/attachments/754060573657792612/844286891997790248/unknown.png');
+  background-position: center;
+  background-repeat: no-repeat;
+	width: 100%;
+  background-size: 9%;
+  z-index: 5;
+	min-width: var(--ss-min-width);
+	height: var(--ss-header-height);
+	position: absolute;
+	text-align: center;
+	top: 5em;
+	left: 0;
+	margin: 0 auto;
+	pointer-events: none;
+}
+
+
+#logo img {
+  display: none;
+	height: 100%;
+	pointer-events: none;
+}
+/* ----------------------------------------------------------------- scope -- */
+#maskmiddle {
+    background: url('https://bliz8.repl.co/theme/boolet_scope.png') center center no-repeat;
+    background-size: contain;
+    width: 100vh;
+    height: 100vh;
+}
+#maskleft, #maskright {
+	background: black;
+	flex: 1;
+}
+/*---------------------------------------------------------crosshair*/
+
+.crosshair {
+	position: absolute;
+	transform-origin: 50% top;
+	top: 50%;
+	border: solid 0.05em #478ef8;
+	height: 0.8em;
+	margin-bottom: 0.12em;
+	opacity: 0.7;
+}
+
+.crosshair.normal {
+	left: calc(50% - 0.15em);
+	background: #478ef8;
+	width: 0.3em;
+}
+
+.crosshair.powerful {
+	left: calc(50% - 0.25em);
+	background: red;
+	width: 0.5em;
+}
+
+#dotReticle {
+	position: absolute;
+	left: 50%; top: 50%;
+	transform: translate(-50%, -50%);
+	background: var(--ss-yolk);
+	width: 0.7em; height: 0.7em;
+	border-radius: 100%;
+}
+
+#shotReticleContainer {
+	position: absolute;
+	text-align: center;
+	left: 50%; top: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0.7;
+	overflow-x: hidden;
+}
+
+#reticleContainer {
+	position: fixed;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+}
+
+#crosshairContainer {
+	position: absolute;
+	left: 50%; top: 50%;
+	transform: perspective(0px);
+}
+
+.shotReticle {
+	box-sizing: border-box;
+	position: absolute;
+	left: 50%;
+	width: 2.5em;
+	height: 100%;
+	transform-origin: center;
+	background: transparent;
+	border: solid;
+	border-left: solid transparent;
+	border-right: solid transparent;
+	border-radius: 1.25em 1.25em 1.25em 1.25em;
+}
+
+.shotReticle:nth-child(1n) {
+	transform: translateX(-50%) rotate(0deg);
+}
+
+.shotReticle:nth-child(2n) {
+	transform: translateX(-50%) rotate(90deg);
+}
+
+.shotReticle.fill {
+}
+
+.shotReticle.border {
+}
+
+.shotReticle.fill.normal {
+	border-color: #478ef8;
+	border-left: solid transparent;
+	border-right: solid transparent;
+	border-width: 0.1em;
+	padding: 0.1em;
+}
+
+.shotReticle.fill.powerful {
+	border-color: red;
+	border-left: solid transparent;
+	border-right: solid transparent;
+	border-width: 0.3em;
+	padding: 0.1em;
+}
+
+.shotReticle.border.normal {
+	border-color: #478ef8;
+	border-left: solid transparent;
+	border-right: solid transparent;
+	border-width: 0.2em;
+}
+
+.shotReticle.border.powerful {
+	border-color: #478ef8;
+	border-left: solid transparent;
+	border-right: solid transparent;
+	border-width: 0.4em;
+}
+
+/*--------------------------*/
+#ss_background {
+   background: url("https://wallpapercave.com/wp/oju5y5S.jpg");
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+.load_screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 20;
+    width: 100%; height: 100%;
+    background-image: url('https://wallpapercave.com/wp/oju5y5S.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+header.weapon-select weapon-select--title pause-bg roundme_sm {
+  background-attachment: #478ef8;
+  color:#478ef8
+}
+
+#readouts {
+  color: #478ef8
+}
+#item_grid {
+	position: relative;
+	padding: 0 0.5em var(--ss-space-md) 0;
+  background: none;
+}
+#equip_equippedslots .equip_item {
+	background: var(--ss-blue2);
+	width: 6em;
+	height: 6em;
+	margin: var(--ss-space-sm);
+	border: none;
+  background: none;
+}
+  #equip_sidebox {
+    background-image: none;
+    border: none;
+    min-width: 21em;
+    background-repeat: no repeat;
+  }
+.media-tabs-content.front_panel {
+    background: url("https://cdn.discordapp.com/attachments/754060573657792612/846389541677957159/unknown.png") !important;
+    margin: 0 auto;
+    height: 17.5em;
+     background-repeat: no repeat;
+    background-size: contain, cover;
+}
+.popup_window {
+	z-index: 2000;
+	position: absolute;
+    display: flex;
+    flex-direction: column;
+    background: url(https://cdn.discordapp.com/attachments/754060573657792612/846389541677957159/unknown.png);
+    align-items: center;
+    padding: var(--ss-space-lg);
+    color: var(--ss-white);
+}
+
+.popup_lg {
+	background: url(https://cdn.discordapp.com/attachments/754060573657792612/846389541677957159/unknown.png);
+	border: var(--ss-space-sm) solid var(--ss-blue3);
+	padding: var(--ss-space-xxl);
+}
+#equip_grid .store_item {
+	background: url("https://cdn.discordapp.com/attachments/754060573657792612/846389541677957159/unknown.png");
+	position: relative;
+	border: var(--ss-space-sm) solid var(--ss-blue4);
+	font-weight: bold;
+	margin: 0 0 var(--ss-space-sm) var(--ss-space-sm);
+	color: var(--ss-blue4);
+	width: 5.5em;
+	height: 5.5em;
+	text-align: center;
+	vertical-align: center;
+	padding: 0.5em;
+ 
+}
+.front_panel {
+	border: var(--ss-space-sm) solid #478ef8;
+	margin-top: 0.6em;
+	background-image: url("https://cdn.discordapp.com/attachments/754060573657792612/846389541677957159/unknown.png");
+	padding: var(--ss-space-lg);
+	min-width: 21.2em;
+	max-width: 21.2em;
+    background-repeat: no repeat;
+ 
+}
+
+.account_eggs {
+	display: flex;
+  border: 0.2em solid #478ef8;
+	vertical-align: center;
+	height: 2.3em;
+	min-width: 6.4em;
+	background: url("https://cdn.discordapp.com/attachments/754060573657792612/846389541677957159/unknown.png");
+	text-align: right;
+	padding: 0.05em var(--ss-space-lg) 0 var(--ss-space-md);
+	position: relative;
+}
+.egg_count {
+    width: auto;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--ss-white);
+}
+.egg_icon {
+    height: 1.5em;
+    margin: var(--ss-space-micro) var(--ss-space-sm) 0 0;
+}
+  #stat_item {
+	flex: 0 0 48%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background: url("https://cdn.discordapp.com/attachments/754060573657792612/846389541677957159/unknown.png");
+	margin: 0 0 var(--ss-space-sm) 0;
+	color: var(--ss-white);
+	font-weight: bold;
+}
+.weapon_img {
+	box-sizing: border-box;
+	background: none;
+	height: 4em;
+	border: none;
+	margin: 0 -0.1em;
+}
+.weapon_img:hover {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+#weapon_select .weapon_selected {
+    background: url("https://cdn.discordapp.com/attachments/754060573657792612/846389541677957159/unknown.png");
+    border: none;
+}
+
+#equip_grid .store_item{
+	border: none;
+	background: none;
+	color: var(--ss-white);
+}
+#equip_grid .store_item:hover {
+    background: url(https://cdn.discordapp.com/attachments/754060573657792612/846389541677957159/unknown.png);
+    border: none;
+}
+#equip_grid .highlight {
+    background:  url(https://cdn.discordapp.com/attachments/754060573657792612/846389541677957159/unknown.png) !important;
+    border: none;
+}
+.box_blue2 {
+    padding: var(--ss-space-lg);
+    background:url(https://wallpapercave.com/wp/oju5y5S.jpg);
+    border: 0.3em solid #478ef8;
+    background-size: contain;
+    background-size: cover;
+}
+.popup_lg {
+    background: var(--ss-space-sm);
+    border: var(--ss-space-sm);
+}
+.respawn-container {
+    position: relative;
+  background: none;
+  background-color: none;
+  display: none;
+    z-index: 0;
+}
+
+#pausePopupInnards {
+    width: 100%;
+}
+#pauseAdPlacement,
+.pauseAdPlacement {
+    position: relative;
+    z-index: 10;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    display: none;
+}
+.pauseAdPlacement.shellshockers-respawn-banner-2 {
+    min-width: auto;
+  display: none;
+}
+#pauseAdPlacement iframe,
+.pauseAdPlacement iframe{
+    margin: 0 auto;
+  display: none;
+
+}
+
+.display-ad-container > div,
+.display-ad-container > img {
+    margin: 0 auto;
+  display: none;
+
+}
+.house-ad-small {
+    display: none;
+}
+.house-ad-wrap {
+    display: none;
+}
+.adBlockerVideo {
+  display: none;
+}
+
+/*---------------------------------------*/
+#best_streak_container h1 {
+    margin: 0;
+    padding: 0;
+    display: inline;
+    text-shadow: var(--ss-space-micro) var(--ss-space-micro) var(--ss-shadow);
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 2.5em !important;
+    color: var(--ss-white) !important;
+    font-weight: bold !important;
+    text-transform: lowercase;
+    padding-left: 1.25em;
+    padding-top: 0em;
+    background-image: url(https://shellshock.io/img/rickroll.gif);
+    background-position: left center;
+    background-size: contain;
+    background-repeat: no-repeat;  
+}
+    /*----------------HUD-------------*/
+
+
+.playerSlot-player-is-me {
+	background: url(https://cdn.discordapp.com/attachments/754060573657792612/846389541677957159/unknown.png);
+	color: var(--ss-white-90);
+ 
+}
+.playerSlot-player-is-them {
+    background: none;
+}
+/*--------------------------------menu-------------------*/
+.pause-bg {
+    background: none;
+    padding: var(--ss-space-md);
+    text-align: center;
+    flex: 1 0 auto;
+}
+.ss_button {
+    border-radius: var(--ss-space-sm);
+    border: 0.2em solid var(--ss-blue5);
+    background: none;
+    color: var(--ss-white);
+    text-align: center;
+    font-weight: bold;
+    line-height: 1em;
+    padding: var(--ss-space-sm) var(--ss-space-lg);
+    box-shadow: 0.1em 0.1em 3px var(--ss-blue4);
+    margin: 0 0 var(--ss-space-md) 0;
+    cursor: pointer;
+    white-space: nowrap;
+}
+/*-------stats------*/
+#stat_item h4 {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin: 0.4em var(--ss-space-md);
+    padding: 0;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+}
+.stat_stat {
+    color: white;
+    margin-right: var(--ss-space-md);
+    font-size: 1.2em;
+}
+/*--------youtube-twitch-news-hud-----------*/
+.news_item, .stream_item, .ytube-item  {
+    background: none;
+    color: var(--ss-white);
+    text-align: left;
+    min-height: 4.7em;
+    margin: 0 0 var(--ss-space-sm) 0;
+    padding: var(--ss-space-sm);
+    display: flex;
+}
+.news_item:nth-child(odd), .stream_item:nth-child(odd) {
+    background: none;
+}
+
+/*----glow shit----------*/
+#stream_mask,.news_mask,.yt_mask {
+    position: absolute;
+    bottom: 0;
+    left: 0.25em;
+    height: 2em;
+    background: none;
+    width: 100%;
+    pointer-events: none;
+}
+#item_mask {
+    position: absolute;
+    bottom: 0.5em;
+    left: 1em;
+    height: 2em;
+    background: none;
+    width: 17.6em;
+    pointer-events: none;
+    z-index: 1;
+}
+/*---------------inv store----*/
+.bevel_blue,.bevel_blue:hover {
+	box-shadow:none;
+  	background: none;
+}
+.btn_toggleon, {
+    border-color:none !important;
+    color: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+/*----------health----*/
+#healthContainer {
+	position: absolute;
+	left: 50%; bottom: 1em;
+	transform: translateX(-50%);
+	display: inline-block;
+	width: 6em; height: 6em;
+	background: url(https://cdn.discordapp.com/attachments/754060573657792612/846389541677957159/unknown.png);
+	border-radius: 90% 50%;
+	text-align: center;
+}
+#healthHp {
+	font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    color: var(--ss-white);
+    font-size: 1.2em;
+    transform: translateY(-3.45em);
+}
+.healthBar {
+	transform-origin: center;
+	transform: rotate(90deg);
+	fill: transparent;
+	stroke: #478ef8;
+	stroke-width: 1em;
+	stroke-dasharray: 14.4513em;
+	transition: all 0.3s ease-in-out;
+}
+.healthYolk {
+	fill: #478ef8;
+}
+
+/*you killed shit*/
+#killBox h3{
+	display:none;
+}
+
+#killBox::before{
+font-size: 1em;
+font-weight: 900;
+content: 'YOU CLAPPED'!important;
+color: #478ef8;
+}
+#KILL_STREAK::before{
+  display: normal !important;
+}
+#deathBox h3{
+display:none;
+}
+
+#deathBox::before{
+font-size: 1em;
+font-weight: 900;
+content: 'YOU GOT CLAPPED BY'!important;
+color: #478ef8;
+}
+
+#KILL_STREAK {
+    display: normal !important;
+}
+/*------badges*/
+.playerSlot--icons {
+    width: 2.7em;
+    display: block;
+    position: absolute;
+    right: -3.1em;
+    top: 0;
+    color: #478ef8;
+}
+
+.hardBoiledShield {
+    position: absolute;
+    transform: translateX(-50%);
+    height: 100%;
+  content: url('https://shellshock.io/img/hardBoiledEmpty.png');
+}
+
+#hardBoiledShieldFill {
+  content: url('https://media.discordapp.net/attachments/834508857719390220/880132345909346334/corgoshield.png');
+}
